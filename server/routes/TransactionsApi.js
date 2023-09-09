@@ -1,15 +1,15 @@
-import { Router } from "express";
-import Transaction from "../models/Transactions.js";
-
+import { Router} from "express";
+import Transaction from "../models/Transaction.js";
 const router = Router();
 
-router.get('/transaction' , async (req, res) => {
-    const transaction = await Transaction.find({}).sort({ createdAt : -1 });
+
+router.get("/" , async (req, res) => {
+    const transaction = await Transaction.find({}).sort({ createdAt: -1});
     res.json({data : transaction });
 });
 
 
-router.post("/transaction", async (req, res) => {
+router.post("/", async (req, res) => {
     const {amount , description , date } = req.body;
     const transaction = new Transaction({
         amount  , 
@@ -20,4 +20,4 @@ router.post("/transaction", async (req, res) => {
     res.json({message : "Success"});
 });
 
-export default router ;
+export default router;
