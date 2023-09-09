@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./index.css";
+import router from "./routes.js";
+import store from "./store/index.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
