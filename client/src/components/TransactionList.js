@@ -1,7 +1,51 @@
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
+import EditSharpIcon from "@mui/icons-material/EditSharp";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import dayjs from "dayjs";
+import Cookies from "js-cookie";
+import * as React from "react";
+import { useSelector } from "react-redux";
+export default function TransactionsList({
+  data,
+  fetchTransctions,
+  setEditTransaction,
+}) 
+{
+  const user = useSelector((state) => state.auth.user);
+  function categoryName(id) {
+    const category = user.categories.find((category) => category._id === id);
+    return category ? category.label : "NA";
+  }
 
+  async function remove(_id) {
+    const token = Cookies.get("token");
+    if (!window.confirm("Are you sure")) return;
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/transaction/${_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (res.ok) {
+      fetchTransctions();
+      window.alert("Deleted Successfully");
+    }
+  }
+
+  function formatDate(date) {
+    return dayjs(date).format("DD MMM, YYYY");
+  }
 
 return (
     <>
