@@ -6,10 +6,7 @@ import TransactionForm from "./components/TransactionForm";
 
 function App() {
 
-
-  
- const [transactions , setTransactions] = useState([]);
- const [ editTransactions , setEditTransactions ] = useState([]);
+const [ editTransactions , setEditTransactions ] = useState([]);
 
   useEffect(() => {
   fetchTransactions();
