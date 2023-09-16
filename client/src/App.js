@@ -9,7 +9,7 @@ function App() {
 
   
  const [transactions , setTransactions] = useState([]);
-
+ const [ editTransactions , setEditTransactions ] = useState([]);
 
   useEffect(() => {
   fetchTransactions();
@@ -33,32 +33,10 @@ function App() {
 
 
   return (
-    <div >
-      <AppBar/>
-
-     <TransactionForm />
-
-    <br/>
-    <section>
-      <table>
-       <thead>
-       <th>Amount</th> 
-        <th>Description</th>
-        <th>Date</th>
-       </thead>
-       <tbody>
-           {transactions.map((trx) => (   
-           <tr key = {trx._id}>
-           <td>{trx.amount}</td>
-           <td>{trx.description}</td>
-           <td>{trx.date}</td> 
- 
-         </tr>
-           ))}
-       </tbody>
-      </table>
-    </section>
-    </div>
+    <>
+      <AppBar />
+      <Outlet />
+    </>
   );
 }
 
