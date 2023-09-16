@@ -23,6 +23,14 @@ function App() {
   }
   
   
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+
 
   return (
     <div >
